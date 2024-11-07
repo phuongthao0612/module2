@@ -13,7 +13,7 @@ public class ColumnSum {
                     System.out.println("Số dòng phải là số nguyên dương");
                 }
             } else {
-                System.out.println("Nhập vào số nguyên dương.");
+                System.out.println("Nhập vào phải là số nguyên.");
                 sc.next();
             }
         }
@@ -25,7 +25,7 @@ public class ColumnSum {
                     System.out.println("Số cột phải là số nguyên dương");
                 }
             } else {
-                System.out.println("Nhập vào số dương.");
+                System.out.println("Nhập vào phải là số nguyên.");
                 sc.next();
             }
         }

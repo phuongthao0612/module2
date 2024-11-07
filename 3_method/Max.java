@@ -3,15 +3,50 @@ import java.util.Scanner;
 public class Max {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Số dòng của ma trận: ");
-        int rows = sc.nextInt();
-        System.out.print("Số cột của ma trận: ");
-        int cols = sc.nextInt();
+        int rows = -1;
+        int cols = -1;
+        while (rows <= 0) {
+            System.out.print("Nhập vào số dòng là số nguyên dương: ");
+            if (sc.hasNextInt()) {
+                rows = sc.nextInt();
+                if (rows <= 0) {
+                    System.out.println("Số dòng phải là số nguyên dương");
+                }
+            } else {
+                System.out.println("Nhập vào số nguyên dương.");
+                sc.next();
+            }
+        }
+        while (cols <= 0) {
+            System.out.print("Nhập vào số cột là số nguyên dương: ");
+            if (sc.hasNextInt()) {
+                cols = sc.nextInt();
+                if (cols <= 0) {
+                    System.out.println("Số cột phải là số nguyên dương");
+                }
+            } else {
+                System.out.println("Nhập vào số dương.");
+                sc.next();
+            }
+        }
         double[][] matrix = new double[rows][cols];
-        System.out.print("Nhập các phần tử cho ma trận: ");
+        System.out.println("Nhập các phần tử cho ma trận: ");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                matrix[i][j] = sc.nextDouble();
+                while (true) {
+                    if (sc.hasNextDouble()) {
+                        double value = sc.nextDouble();
+                        if (value >= 0) {
+                            matrix[i][j] = value;
+                            break;
+                        } else {
+                            System.out.println("Nhập vào số dương.");
+                        }
+                    } else {
+                        System.out.println("Số nhập vào không hợp lệ");
+                        sc.next();
+                    }
+                }
             }
         }
         double max = maxValue(matrix);

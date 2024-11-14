@@ -1,4 +1,8 @@
 public class TennisGame {
+    private static final int LOVE = 0;
+    private static final int FIFTEEN = 1;
+    private static final int THIRTY = 2;
+    private static final int FORTY = 3;
 
     public static String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
         if (player1Score == player2Score) {
@@ -12,13 +16,13 @@ public class TennisGame {
 
     private static String getDeuceScore(int score) {
         switch (score) {
-            case 0:
+            case LOVE:
                 return "Love-All";
-            case 1:
+            case FIFTEEN:
                 return "Fifteen-All";
-            case 2:
+            case THIRTY:
                 return "Thirty-All";
-            case 3:
+            case FORTY:
                 return "Forty-All";
             default:
                 return "Deuce";
@@ -40,13 +44,13 @@ public class TennisGame {
 
     private static String getScoreDescription(int score) {
         switch (score) {
-            case 0:
+            case LOVE:
                 return "Love";
-            case 1:
+            case FIFTEEN:
                 return "Fifteen";
-            case 2:
+            case THIRTY:
                 return "Thirty";
-            case 3:
+            case FORTY:
                 return "Forty";
             default:
                 return "";

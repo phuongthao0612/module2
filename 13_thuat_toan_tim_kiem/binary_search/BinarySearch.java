@@ -1,6 +1,6 @@
 public class BinarySearch {
     public static int binarySearch(int[] arr, int left, int right, int value) {
-        while (left > right) {
+        if (left > right) {
             return -1;
         }
         int mid = (left + right) / 2;

@@ -6,15 +6,16 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập số phần tử của mảng: ");
         int number = 0;
-        try {
-            number = Integer.parseInt(sc.nextLine());
-            if (number <= 0) {
-                System.out.println("Số phần tử của mảng phải là số dương.");
-                return;
+        while (true) {
+            try {
+                number = Integer.parseInt(sc.nextLine());
+                if (number <= 0) {
+                    System.out.println("Số phần tử của mảng phải là số dương.");
+                }
+                else break;
+            } catch (NumberFormatException e) {
+                System.out.println("Số phần tử của mảng phải là số.");
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Số phần tử của mảng phải là số.");
-            return;
         }
         int[] arr = new int[number];
         System.out.println("Nhập các giá trị cho mảng: ");
@@ -33,11 +34,13 @@ public class Main {
         System.out.println("Mảng sau khi được sắp xếp: " + Arrays.toString(arr));
         System.out.println("Nhập giá trị cần tìm: ");
         int value = 0;
-        try {
-            value = Integer.parseInt(sc.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Giá trị tìm kiếm phải là số nguyên.");
-            return;
+        while (true) {
+            try {
+                value = Integer.parseInt(sc.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Giá trị tìm kiếm phải là số nguyên.");
+            }
         }
 
         int result = BinarySearch.binarySearch(arr, 0, number - 1, value);

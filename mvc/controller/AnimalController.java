@@ -1,15 +1,16 @@
 package controller;
 
 import entity.Animal;
-import service.AnimalService;
+import service.IService;
+import service.impl.AnimalService;
 
 import java.util.List;
 
-public class AnimalController {
-    private AnimalService animalService = new AnimalService();
 
+public class AnimalController {
+    private IService animalService = new AnimalService();
     public List<Animal> display() {
-        return animalService.displayAnimals();
+        return animalService.getAllAnimals();
     }
 
     public void add(Animal animal) {
@@ -21,6 +22,11 @@ public class AnimalController {
     }
 
     public List<Animal> search(String keyword) {
-        return animalService.searchAnimals(keyword);
+        return animalService.searchAnimal(keyword);
     }
+
+    public List<Animal> sortByName() {
+        return animalService.sortAnimalsByName();
+    }
+
 }

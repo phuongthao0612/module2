@@ -20,8 +20,13 @@ public class AnimalRepository {
         animals.removeIf(animal -> animal.getId() == id);
     }
 
-    public List<Animal> searchAnimals(String keyword) {
-        return animals;
+    public List<Animal> searchAnimal(String keyword) {
+        List<Animal> result = new ArrayList<>();
+        for (Animal animal : animals) {
+            if (animal.getName().toLowerCase().contains(keyword.toLowerCase())) {
+                result.add(animal);
+            }
+        }
+        return result;
     }
-
 }

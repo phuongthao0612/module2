@@ -1,11 +1,7 @@
 package view;
 
-
 import controller.AnimalController;
 import entity.Animal;
-import entity.Bird;
-import entity.Mammal;
-import entity.Reptile;
 
 import java.util.List;
 import java.util.Scanner;
@@ -33,6 +29,7 @@ public class Main {
             }
         }
     }
+
     public static void menuAnimal() {
         Scanner scanner = new Scanner(System.in);
         AnimalController animalController = new AnimalController();
@@ -42,7 +39,8 @@ public class Main {
             System.out.println("2. Thêm động vật");
             System.out.println("3. Xóa động vật");
             System.out.println("4. Tìm kiếm động vật");
-            System.out.println("5. Quay lại");
+            System.out.println("5. Sắp xếp động vật theo tên");
+            System.out.println("6. Quay lại");
             System.out.print("Mời bạn nhập lựa chọn: ");
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
@@ -76,22 +74,21 @@ public class Main {
                     }
                     break;
                 case 5:
+                    List<Animal> sortedAnimals = animalController.sortByName();
+                    for (Animal animal : sortedAnimals) {
+                        System.out.println(animal);
+                    }
+                    break;
+                case 6:
                     return;
                 default:
                     System.out.println("Lựa chọn không hợp lệ");
             }
         }
     }
+
     public static Animal inputAnimal() {
         Scanner scanner = new Scanner(System.in);
-        Animal animal = null;
-        System.out.println("Chọn loại động vật:");
-        System.out.println("1. Thú");
-        System.out.println("2. Chim");
-        System.out.println("3. Bò sát");
-        System.out.print("Mời bạn chọn loại động vật: ");
-        int choice = Integer.parseInt(scanner.nextLine());
-
         System.out.print("Nhập ID: ");
         int id = Integer.parseInt(scanner.nextLine());
         System.out.print("Nhập tên động vật: ");
@@ -106,20 +103,8 @@ public class Main {
         String diet = scanner.nextLine();
         System.out.print("Nhập số chuồng của động vật: ");
         int cage = Integer.parseInt(scanner.nextLine());
-        switch (choice) {
-            case 1:
-                animal = new Mammal(id, name, species, age, gender, diet, cage);
-                break;
-            case 2:
-                animal = new Bird(id, name, species, age, gender, diet, cage);
-                break;
-            case 3:
-                animal = new Reptile(id, name, species, age, gender, diet, cage);
-                break;
-            default:
-                System.out.println("Lựa chọn không hợp lệ.");
-                return null;
-        }
+        Animal animal = new Animal(id, name, species, age, gender, diet, cage);
         return animal;
     }
 }
+

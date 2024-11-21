@@ -1,6 +1,6 @@
 package entity;
 
-public abstract class Animal {
+public class Animal {
     private int id;
     private String name;
     private String species;
@@ -8,9 +8,6 @@ public abstract class Animal {
     private String gender;
     private String diet;
     private int cage;
-
-    public Animal() {
-    }
 
     public Animal(int id, String name, String species, int age, String gender, String diet, int cage) {
         this.id = id;
@@ -78,14 +75,10 @@ public abstract class Animal {
         this.cage = cage;
     }
 
-    public abstract void eat();
-
-    public abstract void reproduce();
-
     @Override
     public String toString() {
-        return "ID: " + id + ", Tên: " + name + ", Loài: " + species + ", Tuổi: " + age +
-                ", Giới tính: " + gender + ", Chế độ ăn: " + diet +
-                ", Chuồng: " + cage;
+        return "entity.Animal [id=" + id + ", name=" + name + ", species=" + species
+                + ", age=" + age + ", gender=" + gender
+                + ", diet=" + diet + ", cage=" + cage + "]";
     }
 }

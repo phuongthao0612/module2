@@ -36,4 +36,11 @@ public class AnimalService implements IService {
         Collections.sort(animals, (a1, a2) -> a1.getName().compareTo(a2.getName()));
         return animals;
     }
+
+    @Override
+    public List<Animal> sortAnimalsByCage() {
+        List<Animal> animals = animalRepository.getAllAnimals();
+        Collections.sort(animals, (a1, a2) -> Integer.compare(a1.getCage(), a2.getCage()));
+        return animals;
+    }
 }

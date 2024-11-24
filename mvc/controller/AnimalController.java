@@ -29,4 +29,7 @@ public class AnimalController {
         return animalService.sortAnimalsByName();
     }
 
+    public List<Animal> sortByCage() {
+        return animalService.sortAnimalsByCage();
+    }
 }

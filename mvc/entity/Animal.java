@@ -77,7 +77,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "entity.Animal [id=" + id + ", name=" + name + ", species=" + species
+        return "Animal [id=" + id + ", name=" + name + ", species=" + species
                 + ", age=" + age + ", gender=" + gender
                 + ", diet=" + diet + ", cage=" + cage + "]";
     }

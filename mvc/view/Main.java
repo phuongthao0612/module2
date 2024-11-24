@@ -14,8 +14,7 @@ public class Main {
             System.out.println("1. Quản lý động vật");
             System.out.println("2. Quản lý nhân viên");
             System.out.println("3. Thoát");
-            System.out.print("Mời bạn nhập lựa chọn: ");
-            int choice = Integer.parseInt(scanner.nextLine());
+            int choice = getChoice("Mời bạn nhập lựa chọn: ", scanner);
             switch (choice) {
                 case 1:
                     menuAnimal();
@@ -40,14 +39,18 @@ public class Main {
             System.out.println("3. Xóa động vật");
             System.out.println("4. Tìm kiếm động vật");
             System.out.println("5. Sắp xếp động vật theo tên");
-            System.out.println("6. Quay lại");
-            System.out.print("Mời bạn nhập lựa chọn: ");
-            int choice = Integer.parseInt(scanner.nextLine());
+            System.out.println("6. Sắp xếp động vật theo chuồng");
+            System.out.println("7. Quay lại");
+            int choice = getChoice("Mời bạn nhập lựa chọn: ", scanner);
             switch (choice) {
                 case 1:
                     List<Animal> animals = animalController.display();
-                    for (Animal animal : animals) {
-                        System.out.println(animal);
+                    if (animals.isEmpty()) {
+                        System.out.println("Không có động vật nào.");
+                    } else {
+                        for (Animal animal : animals) {
+                            System.out.println(animal);
+                        }
                     }
                     break;
                 case 2:
@@ -56,8 +59,7 @@ public class Main {
                     System.out.println("Thêm mới thành công");
                     break;
                 case 3:
-                    System.out.print("Nhập ID động vật cần xóa: ");
-                    int idToRemove = Integer.parseInt(scanner.nextLine());
+                    int idToRemove = getChoice("Nhập ID động vật cần xóa: ", scanner);
                     animalController.remove(idToRemove);
                     System.out.println("Xóa thành công");
                     break;
@@ -74,12 +76,26 @@ public class Main {
                     }
                     break;
                 case 5:
-                    List<Animal> sortedAnimals = animalController.sortByName();
-                    for (Animal animal : sortedAnimals) {
-                        System.out.println(animal);
+                    List<Animal> sortedByName = animalController.sortByName();
+                    if (sortedByName.isEmpty()) {
+                        System.out.println("Không có động vật nào để sắp xếp.");
+                    } else {
+                        for (Animal animal : sortedByName) {
+                            System.out.println(animal);
+                        }
                     }
                     break;
                 case 6:
+                    List<Animal> sortedByCage = animalController.sortByCage();
+                    if (sortedByCage.isEmpty()) {
+                        System.out.println("Không có động vật nào để sắp xếp.");
+                    } else {
+                        for (Animal animal : sortedByCage) {
+                            System.out.println(animal);
+                        }
+                    }
+                    break;
+                case 7:
                     return;
                 default:
                     System.out.println("Lựa chọn không hợp lệ");
@@ -89,22 +105,73 @@ public class Main {
 
     public static Animal inputAnimal() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập ID: ");
-        int id = Integer.parseInt(scanner.nextLine());
+        int id = 0;
+        while (true) {
+            System.out.print("Nhập ID: ");
+            try {
+                id = Integer.parseInt(scanner.nextLine());
+                if (id <= 0) {
+                    System.out.println("ID phải là số dương. Vui lòng thử lại.");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("ID không hợp lệ. Vui lòng thử lại.");
+            }
+        }
         System.out.print("Nhập tên động vật: ");
         String name = scanner.nextLine();
         System.out.print("Nhập loài động vật: ");
         String species = scanner.nextLine();
-        System.out.print("Nhập tuổi động vật: ");
-        int age = Integer.parseInt(scanner.nextLine());
+        int age = 0;
+        while (true) {
+            System.out.print("Nhập tuổi động vật: ");
+            try {
+                age = Integer.parseInt(scanner.nextLine());
+                if (age < 0) {
+                    System.out.println("Tuổi động vật không hợp lệ. Vui lòng nhập lại.");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Tuổi động vật không hợp lệ. Vui lòng thử lại.");
+            }
+        }
         System.out.print("Nhập giới tính động vật: ");
         String gender = scanner.nextLine();
         System.out.print("Nhập chế độ ăn của động vật: ");
         String diet = scanner.nextLine();
-        System.out.print("Nhập số chuồng của động vật: ");
-        int cage = Integer.parseInt(scanner.nextLine());
+        int cage = 0;
+        while (true) {
+            System.out.print("Nhập số chuồng của động vật: ");
+            try {
+                cage = Integer.parseInt(scanner.nextLine());
+                if (cage <= 0) {
+                    System.out.println("Số chuồng phải là số dương. Vui lòng nhập lại.");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Số chuồng không hợp lệ. Vui lòng thử lại.");
+            }
+        }
         Animal animal = new Animal(id, name, species, age, gender, diet, cage);
         return animal;
     }
-}
 
+    private static int getChoice(String s, Scanner scanner) {
+        int choice = -1;
+        while (choice < 1 || choice > 3) {
+            System.out.print(s);
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice < 1 || choice > 3) {
+                    System.out.println("Vui lòng nhập lại từ 1 đến 3");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
+            }
+        }
+        return choice;
+    }
+}

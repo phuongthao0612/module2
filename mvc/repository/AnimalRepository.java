@@ -22,10 +22,16 @@ public class AnimalRepository {
 
     public List<Animal> searchAnimal(String keyword) {
         List<Animal> result = new ArrayList<>();
+        if (keyword == null || keyword.isEmpty()) {
+            return result;
+        }
         for (Animal animal : animals) {
             if (animal.getName().toLowerCase().contains(keyword.toLowerCase())) {
                 result.add(animal);
             }
+        }
+        if (result.isEmpty()) {
+            System.out.println("Không tìm thấy động vật nào khớp với từ khoá: " + keyword);
         }
         return result;
     }

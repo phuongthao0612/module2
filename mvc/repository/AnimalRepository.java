@@ -35,4 +35,14 @@ public class AnimalRepository {
         }
         return result;
     }
+
+    public Animal findById(int idToRemove) {
+        List<Animal> animals = getAllAnimals();
+        for (Animal animal : animals) {
+            if (animal.getId() == idToRemove) {
+                return animal;
+            }
+        }
+        return null;
+    }
 }

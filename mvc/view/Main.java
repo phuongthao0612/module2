@@ -14,7 +14,7 @@ public class Main {
             System.out.println("1. Quản lý động vật");
             System.out.println("2. Quản lý nhân viên");
             System.out.println("3. Thoát");
-            int choice = getChoice("Mời bạn nhập lựa chọn: ", scanner);
+            int choice = getChoice("Mời bạn nhập lựa chọn: ", scanner, 1, 3);
             switch (choice) {
                 case 1:
                     menuAnimal();
@@ -41,7 +41,7 @@ public class Main {
             System.out.println("5. Sắp xếp động vật theo tên");
             System.out.println("6. Sắp xếp động vật theo chuồng");
             System.out.println("7. Quay lại");
-            int choice = getChoice("Mời bạn nhập lựa chọn: ", scanner);
+            int choice = getChoice("Mời bạn nhập lựa chọn: ", scanner, 1, 7);
             switch (choice) {
                 case 1:
                     List<Animal> animals = animalController.display();
@@ -59,9 +59,14 @@ public class Main {
                     System.out.println("Thêm mới thành công");
                     break;
                 case 3:
-                    int idToRemove = getChoice("Nhập ID động vật cần xóa: ", scanner);
-                    animalController.remove(idToRemove);
-                    System.out.println("Xóa thành công");
+                    int idToRemove = Integer.parseInt(scanner.nextLine());
+                    Animal animal = animalController.findById(idToRemove);
+                    if (animal != null) {
+                        System.out.println(idToRemove);
+                    } else {
+                        animalController.remove(idToRemove);
+                        System.out.println("Xóa thành công");
+                    }
                     break;
                 case 4:
                     System.out.print("Nhập loài động vật cần tìm: ");
@@ -159,14 +164,14 @@ public class Main {
         return animal;
     }
 
-    private static int getChoice(String s, Scanner scanner) {
+    private static int getChoice(String s, Scanner scanner, int min, int max) {
         int choice = -1;
-        while (choice < 1 || choice > 3) {
+        while (choice < min || choice > max) {
             System.out.print(s);
             try {
                 choice = Integer.parseInt(scanner.nextLine());
-                if (choice < 1 || choice > 3) {
-                    System.out.println("Vui lòng nhập lại từ 1 đến 3");
+                if (choice < min || choice > max) {
+                    System.out.println("Vui lòng nhập lại từ " + min + " đến " + max + ".");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");

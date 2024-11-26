@@ -1,8 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +12,8 @@ public class Main {
             br = new BufferedReader(new FileReader("src/countries.csv"));
 
             while ((line = br.readLine()) != null) {
-                printCountry(parseCsvLine(line));
+                Country country = parseCsvLine(line);
+                printCountry(country);
             }
 
         } catch (IOException e) {
@@ -28,23 +28,19 @@ public class Main {
         }
     }
 
-    public static List<String> parseCsvLine(String csvLine) {
-        List<String> result = new ArrayList<>();
-        if (csvLine != null) {
+    public static Country parseCsvLine(String csvLine) {
+        if (csvLine != null && !csvLine.isEmpty()) {
             String[] splitData = csvLine.split(",");
-            for (int i = 0; i < splitData.length; i++) {
-                result.add(splitData[i]);
+            if (splitData.length == 3) {
+                return new Country(Integer.parseInt(splitData[0]), splitData[1], splitData[2]);
             }
         }
-        return result;
+        return null;
     }
 
-    private static void printCountry(List<String> country) {
-        System.out.println(
-                "Country [id= "
-                        + country.get(0)
-                        + ", code= " + country.get(1)
-                        + " , name=" + country.get(2)
-                        + "]");
+    private static void printCountry(Country country) {
+        if (country != null) {
+            System.out.println(country);
+        }
     }
 }

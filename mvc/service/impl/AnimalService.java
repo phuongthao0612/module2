@@ -10,6 +10,9 @@ import java.util.List;
 public class AnimalService implements IService {
     private AnimalRepository animalRepository = new AnimalRepository();
 
+    public Animal findById(int idToRemove) {return animalRepository.findById(idToRemove);
+    }
+
     @Override
     public List<Animal> getAllAnimals() {
         return animalRepository.getAllAnimals();

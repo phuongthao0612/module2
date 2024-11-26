@@ -32,4 +32,8 @@ public class AnimalController {
     public List<Animal> sortByCage() {
         return animalService.sortAnimalsByCage();
     }
+
+    public Animal findById(int idToRemove) {
+        return AnimalService.findById(idToRemove);
+    }
 }

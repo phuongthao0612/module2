@@ -6,12 +6,10 @@ import service.IService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class AnimalService implements IService {
-    private AnimalRepository animalRepository = new AnimalRepository();
-
-    public Animal findById(int idToRemove) {return animalRepository.findById(idToRemove);
-    }
+    private static AnimalRepository animalRepository = new AnimalRepository();
 
     @Override
     public List<Animal> getAllAnimals() {
@@ -45,5 +43,19 @@ public class AnimalService implements IService {
         List<Animal> animals = animalRepository.getAllAnimals();
         Collections.sort(animals, (a1, a2) -> Integer.compare(a1.getCage(), a2.getCage()));
         return animals;
+    }
+
+    private boolean isIdExist(int id) {
+        for (Animal existingAnimal : animalRepository.getAllAnimals()) {
+            if (existingAnimal.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Animal findById(int id) {
+        return animalRepository.findById(id);
     }
 }

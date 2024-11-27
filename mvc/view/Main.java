@@ -59,17 +59,18 @@ public class Main {
                     System.out.println("Thêm mới thành công");
                     break;
                 case 3:
+                    System.out.print("Nhập ID của động vật cần xóa: ");
                     int idToRemove = Integer.parseInt(scanner.nextLine());
-                    Animal animal = animalController.findById(idToRemove);
-                    if (animal != null) {
-                        System.out.println(idToRemove);
-                    } else {
+                    Animal animalToRemove = animalController.findById(idToRemove);
+                    if (animalToRemove != null) {
                         animalController.remove(idToRemove);
                         System.out.println("Xóa thành công");
+                    } else {
+                        System.out.println("Không tìm thấy động vật với ID: " + idToRemove);
                     }
                     break;
                 case 4:
-                    System.out.print("Nhập loài động vật cần tìm: ");
+                    System.out.print("Nhập từ khóa tìm kiếm: ");
                     String keyword = scanner.nextLine();
                     List<Animal> foundAnimals = animalController.search(keyword);
                     if (foundAnimals.isEmpty()) {
@@ -85,6 +86,7 @@ public class Main {
                     if (sortedByName.isEmpty()) {
                         System.out.println("Không có động vật nào để sắp xếp.");
                     } else {
+                        System.out.println("Danh sách động vật sau khi sắp xếp theo tên:");
                         for (Animal animal : sortedByName) {
                             System.out.println(animal);
                         }
@@ -95,6 +97,7 @@ public class Main {
                     if (sortedByCage.isEmpty()) {
                         System.out.println("Không có động vật nào để sắp xếp.");
                     } else {
+                        System.out.println("Danh sách động vật sau khi sắp xếp theo chuồng:");
                         for (Animal animal : sortedByCage) {
                             System.out.println(animal);
                         }

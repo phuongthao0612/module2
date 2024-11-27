@@ -9,6 +9,7 @@ import java.util.List;
 
 public class AnimalController {
     private IService animalService = new AnimalService();
+
     public List<Animal> display() {
         return animalService.getAllAnimals();
     }
@@ -18,7 +19,12 @@ public class AnimalController {
     }
 
     public void remove(int id) {
-        animalService.removeAnimal(id);
+        Animal animalToRemove = findById(id);
+        if (animalToRemove != null) {
+            animalService.removeAnimal(id);
+        } else {
+            System.out.println("Không tìm thấy động vật với ID: " + id);
+        }
     }
 
     public List<Animal> search(String keyword) {
@@ -33,7 +39,10 @@ public class AnimalController {
         return animalService.sortAnimalsByCage();
     }
 
-    public Animal findById(int idToRemove) {
-        return AnimalService.findById(idToRemove);
+    public Animal findById(int id) {
+        return animalService.findById(id);
     }
 }
+
+
+

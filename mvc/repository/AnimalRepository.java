@@ -17,7 +17,10 @@ public class AnimalRepository {
     }
 
     public void removeAnimal(int id) {
-        animals.removeIf(animal -> animal.getId() == id);
+        Animal animalToRemove = findById(id);
+        if (animalToRemove != null) {
+            animals.remove(animalToRemove);
+        }
     }
 
     public List<Animal> searchAnimal(String keyword) {

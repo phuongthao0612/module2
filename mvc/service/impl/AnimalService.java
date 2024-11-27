@@ -45,15 +45,6 @@ public class AnimalService implements IService {
         return animals;
     }
 
-    private boolean isIdExist(int id) {
-        for (Animal existingAnimal : animalRepository.getAllAnimals()) {
-            if (existingAnimal.getId() == id) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override
     public Animal findById(int id) {
         return animalRepository.findById(id);

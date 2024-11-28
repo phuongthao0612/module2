@@ -127,10 +127,26 @@ public class Main {
                 System.out.println("ID không hợp lệ. Vui lòng thử lại.");
             }
         }
-        System.out.print("Nhập tên động vật: ");
-        String name = scanner.nextLine();
-        System.out.print("Nhập loài động vật: ");
-        String species = scanner.nextLine();
+        String name = "";
+        while (true) {
+            System.out.print("Nhập tên động vật: ");
+            name = scanner.nextLine();
+            if (name.matches("^[A-Z][a-z]+$")) {
+                break;
+            } else {
+                System.out.println("Tên động vật không hợp lệ. Vui lòng nhập lại.");
+            }
+        }
+        String species = "";
+        while (true) {
+            System.out.print("Nhập loài động vật: ");
+            species = scanner.nextLine();
+            if (species.matches("^[A-Z][a-z]+$")) {
+                break;
+            } else {
+                System.out.println("Không hợp lệ. Vui lòng nhập lại.");
+            }
+        }
         int age = 0;
         while (true) {
             System.out.print("Nhập tuổi động vật: ");
@@ -145,8 +161,16 @@ public class Main {
                 System.out.println("Tuổi động vật không hợp lệ. Vui lòng thử lại.");
             }
         }
-        System.out.print("Nhập giới tính động vật: ");
-        String gender = scanner.nextLine();
+        String gender = "";
+        while (true) {
+            System.out.print("Nhập giới tính động vật: ");
+            gender = scanner.nextLine();
+            if (gender.matches("^(male|female)$")) {
+                break;
+            } else {
+                System.out.println("Giới tính động vật male hay female.");
+            }
+        }
         System.out.print("Nhập chế độ ăn của động vật: ");
         String diet = scanner.nextLine();
         int cage = 0;

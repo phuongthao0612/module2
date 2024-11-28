@@ -6,7 +6,6 @@ import service.IService;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 public class AnimalService implements IService {
     private static AnimalRepository animalRepository = new AnimalRepository();
@@ -44,6 +43,7 @@ public class AnimalService implements IService {
         Collections.sort(animals, (a1, a2) -> Integer.compare(a1.getCage(), a2.getCage()));
         return animals;
     }
+
 
     @Override
     public Animal findById(int id) {

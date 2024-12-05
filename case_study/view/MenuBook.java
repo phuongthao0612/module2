@@ -79,7 +79,7 @@ public class MenuBook {
             System.out.println("Lưu ý: Hành động này không thể hoàn tác.");
             System.out.println("Bấm y để xác nhận. Bấm phím bất kỳ để hủy.");
             char confirm = scanner.nextLine().charAt(0);
-            if (confirm == 'y' || confirm == 'Y') {
+            if (confirm == 'y') {
                 bookController.remove(id);
                 System.out.println("Xóa sách thành công.");
             } else {

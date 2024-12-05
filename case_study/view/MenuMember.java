@@ -25,6 +25,11 @@ public class MenuMember {
                     System.out.println("Thêm mới thành công");
                     break;
                 case 2:
+                    System.out.println("Xóa độc giả");
+                    deleteMember(scanner, memberController);
+                    break;
+                case 3:
+
 
             }
 

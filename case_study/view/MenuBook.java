@@ -12,7 +12,7 @@ public class MenuBook {
         Scanner scanner = new Scanner(System.in);
         BookController bookController = new BookController();
         while (true) {
-            System.out.println("\nQuản lý sách:");
+            System.out.println("\nQuản lý sách: ");
             System.out.println("1. Thêm sách");
             System.out.println("2. Xóa sách");
             System.out.println("3. Sửa thông tin sách");
@@ -36,7 +36,7 @@ public class MenuBook {
                     updateBook(scanner, bookController);
                     break;
                 case 4:
-                    System.out.println("Hiển thị danh sách sách: ");
+                    System.out.println("Hiển thị danh sách các cuốn sách: ");
                     displayBooks(bookController);
                     break;
                 case 5:
@@ -94,22 +94,22 @@ public class MenuBook {
         Book book = bookController.findById(id);
         if (book != null) {
             System.out.println("Thông tin sách hiện tại: " + book);
-            System.out.println("Nhập tên sách mới (hoặc giữ nguyên):");
+            System.out.println("Nhập tên sách mới (hoặc giữ nguyên): ");
             String title = scanner.nextLine();
             if (!title.isEmpty()) {
                 book.setTitle(title);
             }
-            System.out.println("Nhập tên tác giả mới (hoặc giữ nguyên):");
+            System.out.println("Nhập tên tác giả mới (hoặc giữ nguyên): ");
             String author = scanner.nextLine();
             if (!author.isEmpty()) {
                 book.setAuthor(author);
             }
-            System.out.println("Nhập thể loại sách mới (hoặc giữ nguyên):");
+            System.out.println("Nhập thể loại sách mới (hoặc giữ nguyên): ");
             String category = scanner.nextLine();
             if (!category.isEmpty()) {
                 book.setCategory(category);
             }
-            System.out.println("Nhập số lượng tồn kho mới (hoặc giữ nguyên):");
+            System.out.println("Nhập số lượng tồn kho mới (hoặc giữ nguyên): ");
             String stockQuantity = scanner.nextLine();
             if (!stockQuantity.isEmpty()) {
                 try {
@@ -118,7 +118,7 @@ public class MenuBook {
                     System.out.println("Số lượng tồn kho không hợp lệ.");
                 }
             }
-            System.out.println("Nhập trạng thái sách mới (hoặc giữ nguyên):");
+            System.out.println("Nhập trạng thái sách mới (hoặc giữ nguyên): ");
             String status = scanner.nextLine();
             if (!status.isEmpty()) {
                 book.setStatus(status);
@@ -136,7 +136,7 @@ public class MenuBook {
         if (books.isEmpty()) {
             System.out.println("Không có sách nào.");
         } else {
-            System.out.println("Danh sách sách hiện có:");
+            System.out.println("Danh sách sách hiện có: ");
             for (Book book : books) {
                 System.out.println(book);
             }

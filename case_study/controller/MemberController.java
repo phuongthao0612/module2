@@ -4,7 +4,6 @@ import entity.Member;
 import service.IMemberService;
 import service.impl.MemberService;
 
-
 import java.util.List;
 
 public class MemberController {
@@ -36,5 +35,8 @@ public class MemberController {
         return memberService.searchByName(name);
     }
 
+    public void updateMember(int id, String name, String address) {
+        Member member = new Member(id, name, address);
+        memberService.update(id, member);
+    }
 }
-

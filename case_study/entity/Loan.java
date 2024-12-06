@@ -1,22 +1,20 @@
 package entity;
 
-import java.util.Date;
-
 public class Loan {
     private int loanId;
     private int bookId;
     private int memberId;
-    private Date loanDate;
-    private Date returnDate;
+    private String loanDate;
+    private String returnDate;
     private boolean isReturned;
 
-    public Loan(int loanId, int bookId, int memberId, Date loanDate, Date returnDate, boolean isReturned) {
+    public Loan(int loanId, int bookId, int memberId, String loanDate, String returnDate) {
         this.loanId = loanId;
         this.bookId = bookId;
         this.memberId = memberId;
         this.loanDate = loanDate;
         this.returnDate = returnDate;
-        this.isReturned = isReturned;
+        this.isReturned = false;
     }
 
     public int getLoanId() {
@@ -43,19 +41,19 @@ public class Loan {
         this.memberId = memberId;
     }
 
-    public Date getLoanDate() {
+    public String getLoanDate() {
         return loanDate;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(String loanDate) {
         this.loanDate = loanDate;
     }
 
-    public Date getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 
@@ -70,7 +68,6 @@ public class Loan {
     @Override
     public String toString() {
         return "Loan [loanId=" + loanId + ", bookId=" + bookId + ", memberId=" + memberId
-                + ", loanDate=" + loanDate + ", returnDate=" + returnDate + ", isReturned="
-                + isReturned + "]";
+                + ", loanDate=" + loanDate + ", returnDate=" + returnDate + ", isReturned=" + isReturned + "]";
     }
 }

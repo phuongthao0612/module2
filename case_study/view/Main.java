@@ -4,6 +4,7 @@ package view;
 import java.util.Scanner;
 
 import static view.MenuBook.menuBook;
+import static view.MenuLoan.menuLoan;
 import static view.MenuMember.menuMember;
 
 
@@ -32,6 +33,7 @@ public class Main {
                     menuMember();
                     break;
                 case 3:
+                    menuLoan();
                     break;
                 case 4:
                     return;
@@ -40,4 +42,5 @@ public class Main {
             }
         }
     }
+    
 }

@@ -3,6 +3,7 @@ package repository;
 import entity.Book;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class BookRepository {
     }
 
     public void add(Book book) {
-        List<Book> books = getAll();
+        List<Book> books = new ArrayList<>();
         books.add(book);
         writeFile(books, true);
     }

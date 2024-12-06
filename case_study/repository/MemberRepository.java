@@ -3,8 +3,7 @@ package repository;
 import entity.Member;
 
 import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,19 +16,12 @@ public class MemberRepository {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.split(",");
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    Member member = new Member(
-                            Integer.parseInt(data[0]),
-                            data[1],
-                            formatter.parse(data[2]),
-                            data[3],
-                            data[4]
-                    );
-                    members.add(member);
-                } catch (ParseException e) {
-                    System.out.println("Lỗi ngày sinh: " + data[2]);
-                }
+                Member member = new Member(
+                        Integer.parseInt(data[0]),
+                        data[1],
+                        data[2]
+                );
+                members.add(member);
             }
         } catch (FileNotFoundException e) {
             System.out.println("Không tìm thấy file " + "src/csv/member.csv");
@@ -41,12 +33,11 @@ public class MemberRepository {
 
     private void writeFile(List<Member> members, boolean append) {
         File file = new File("src/csv/member.csv");
-        try {
-            FileWriter fileWriter = new FileWriter(file, append);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        try (FileWriter fileWriter = new FileWriter(file, append);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             for (Member member : members) {
-                bufferedWriter.write(member.getId() + "," + member.getName() + "," + member.getBirthDate() +
-                        "," + member.getAddress() + "," + member.getPhone());
+                bufferedWriter.write(member.getId() + "," + member.getName() + "," +
+                        member.getAddress());
                 bufferedWriter.newLine();
             }
         } catch (IOException e) {
@@ -55,7 +46,7 @@ public class MemberRepository {
     }
 
     public void add(Member member) {
-        List<Member> members = getAll();
+        List<Member> members = new ArrayList<>();
         members.add(member);
         writeFile(members, true);
     }
@@ -66,8 +57,16 @@ public class MemberRepository {
         writeFile(members, false);
     }
 
-    public void update(Member member) {
-
+    public void update(Member updatedMember) {
+        List<Member> members = getAll();
+        for (int i = 0; i < members.size(); i++) {
+            Member currentMember = members.get(i);
+            if (currentMember.getId() == updatedMember.getId()) {
+                members.set(i, updatedMember);
+                break;
+            }
+        }
+        writeFile(members, false);
     }
 
     public Member findById(int id) {
@@ -79,6 +78,7 @@ public class MemberRepository {
         }
         return null;
     }
+
 
     public List<Member> searchByName(String name) {
         List<Member> members = getAll();

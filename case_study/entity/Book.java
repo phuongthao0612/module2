@@ -16,6 +16,8 @@ public class Book {
         this.stockQuantity = stockQuantity;
         this.status = status;
     }
+
+
     public int getId() {
         return id;
     }

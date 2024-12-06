@@ -7,6 +7,7 @@ import service.IMemberService;
 import java.util.List;
 
 public class MemberService implements IMemberService {
+
     private MemberRepository memberRepository = new MemberRepository();
 
     @Override
